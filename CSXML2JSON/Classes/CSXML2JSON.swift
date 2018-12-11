@@ -120,9 +120,8 @@ class CSXMLTag : NSObject{
             self.parser = XMLParser(data:data)
             parser.delegate = self
             if parser.parse(){
-                print("success")
+                
             }else{
-                print("error==> \(String(describing: parser.parserError))")
                 if let handler = self.resultHandler{
                     handler(nil,NSError(domain: "com.csdq.error", code: -1, userInfo: ["message" : parser.parserError?.localizedDescription ?? "xml is in wrong format"]));
                 }

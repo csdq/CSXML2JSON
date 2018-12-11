@@ -11,6 +11,7 @@ import CSXML2JSON
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var textView: UITextView!
     let tool : CSXML2JSON = CSXML2JSON.init()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +71,7 @@ class ViewController: UIViewController {
 <b>Letter B</b>
 <b>Letter B</b>
 <b>Letter B</b>
-<c>Letter B</c>
+<c>Letter C</c>
 </letters>
 </my_addition>
 
@@ -79,7 +80,8 @@ class ViewController: UIViewController {
 """
         ) { (dict, error) in
             do{
-                try print("\(String(describing: String.init(data: JSONSerialization.data(withJSONObject: dict ?? [:], options: JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8)!))");
+                let json = String.init(data: try JSONSerialization.data(withJSONObject: dict ?? [:], options: JSONSerialization.WritingOptions.prettyPrinted), encoding: String.Encoding.utf8);
+                self.textView.text = json
                 //");
             }catch{
                 
