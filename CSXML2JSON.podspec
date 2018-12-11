@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 ...em... not useful at all
                        DESC
 
-  s.homepage         = 'https://github.com/mr.s/CSXML2JSON'
+  s.homepage         = 'https://github.com/csdq/CSXML2JSON'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'mr.s' => 'mr.s' }
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'CSXML2JSON/Classes/**/*'
-  
+  s.swift_version = '4.0'
   # s.resource_bundles = {
   #   'CSXML2JSON' => ['CSXML2JSON/Assets/*.png']
   # }
