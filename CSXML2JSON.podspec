@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'mr.s' => 'mr.s' }
-  s.source           = { :git => 'https://github.com/mr.s/CSXML2JSON.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/csdq/CSXML2JSON.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
