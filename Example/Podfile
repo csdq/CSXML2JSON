@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CSXML2JSON_Example' do
+  pod 'CSXML2JSON', :path => '../'
+
+  target 'CSXML2JSON_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
