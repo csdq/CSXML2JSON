@@ -145,6 +145,8 @@ class CSXMLTag : NSObject{
 }
 
 @objc public class CSXML2JSON : NSObject,XMLParserDelegate{
+    //
+    public var ignoreAttributes : Bool = false
     //Call After Finished
     private var resultHandler : ((Dictionary<String,Any>?,Error?)->Void)?
     //element stack
@@ -225,7 +227,9 @@ class CSXMLTag : NSObject{
             self.currentTag = newTagModel;
         }
         self.currentTag.tagName = elementName
-        self.currentTag.attributes = attributeDict
+        if !ignoreAttributes {
+            self.currentTag.attributes = attributeDict
+        }
         self.currentTag.namespaceURI = namespaceURI
         self.dataString = String()
     }

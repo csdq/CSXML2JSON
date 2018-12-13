@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let tool : CSXML2JSON = CSXML2JSON.init()
     override func viewDidLoad() {
         super.viewDidLoad()
+        tool.ignoreAttributes = true
         tool.jsonObject(xml:
             """
             <?xml version="1.0" encoding="UTF-8"?>
