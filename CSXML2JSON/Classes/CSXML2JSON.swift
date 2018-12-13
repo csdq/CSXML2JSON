@@ -160,7 +160,7 @@ class CSXMLTag : NSObject{
         self.parser = XMLParser()
     }
     
-    @objc public func xml2jsonObject(xml : String, resultHandler : @escaping (Dictionary<String,Any>?,Error?)->Void){
+    @objc public func jsonObject(xml : String, resultHandler : @escaping (Dictionary<String,Any>?,Error?)->Void){
         self.resultHandler = resultHandler
         if let data = xml.data(using: String.Encoding.utf8){
             self.parser = XMLParser(data:data)
@@ -180,7 +180,7 @@ class CSXMLTag : NSObject{
         
     }
     
-    @objc public func xml2jsonObject(xmlParser : XMLParser, resultHandler : @escaping (Dictionary<String,Any>?,Error?)->Void){
+    @objc public func jsonObject(xmlParser : XMLParser, resultHandler : @escaping (Dictionary<String,Any>?,Error?)->Void){
         self.resultHandler = resultHandler
         self.parser = xmlParser
         parser.delegate = self
