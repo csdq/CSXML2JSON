@@ -15,68 +15,24 @@ class ViewController: UIViewController {
     let tool : CSXML2JSON = CSXML2JSON.init()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textView.isEditable = false
         tool.xml2jsonObject(xml:
 """
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Name</key>
-    <string>Mr.s</string>
-    <key>Address</key>
-    <dict>
-        <key>Country</key>
-        <string>C</string>
-        <key>Province</key>
-        <string>Z</string>
-        <key>City</key>
-        <string>N</string>
-    </dict>
-    <key>Array</key>
-    <array>
-        <dict>
-            <key>title</key>
-            <string>🏀</string>
-            <key>icons</key>
-            <array>
-                <string>1-1.png</string>
-                <string>1-2.png</string>
-            </array>
-        </dict>
-        <dict>
-            <key>title</key>
-            <string>⚽️</string>
-            <key>icons</key>
-            <array>
-                <string>2-1.png</string>
-                <string>2-2.png</string>
-            </array>
-        </dict>
-        <dict>
-            <key>title</key>
-            <string>🏓️</string>
-            <key>icons</key>
-            <array>
-                <string>3-1.png</string>
-                <string>3-2.png</string>
-            </array>
-        </dict>
-    </array>
-</dict>
-
-<my_addition>
-<letters>
-<a>Letter A</a>
-<b>Letter B</b>
-<b>Letter B</b>
-<b>Letter B</b>
-<b>Letter B</b>
-<c>Letter C</c>
-</letters>
-</my_addition>
-
-</plist>
-
+<!DOCTYPE note SYSTEM "Note.dtd">
+<!-- Comments -->
+<cs:books groupId='123' xmlns:cs="http://xxxx.com">
+<book>
+<author id='1'>Tom</author>
+<title>The Apple<a>a tag</a> ^_^ </title>
+<publisher>O'Reilly</publisher>
+</book>
+<book>
+<author id='2'><id>13</id>Jack</author>
+<title>The sheep</title>
+<publisher><![CDATA[ O'Reilly ]]><![CDATA[ Publisher ]]></publisher>
+</book>
+</cs:books>
 """
         ) { (dict, error) in
             do{
