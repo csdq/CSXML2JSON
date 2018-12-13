@@ -10,16 +10,21 @@ import Foundation
 
 //XML ELEMENT/Tag
 class CSXMLTag : NSObject{
+    //
     public weak var parentTag : CSXMLTag?
+    //
     public var subTags : Array<CSXMLTag>
     //
     public var tagName : String?
     //
     public var namespaceURI : String?
-    //text = text
+    //when tag contain subtags and text , the text stored as key-value: prefix+'text' : text-value
+    public var prefix : String = "_";
     public var text : String = String()
+    
     //tagName_text = data string
     public var CDATA : Data = Data()
+    //process CDATA to String
     public var cdataString : String{
         get {
             return (String.init(data: CDATA, encoding: .utf8) ?? "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -42,19 +47,19 @@ class CSXMLTag : NSObject{
                     attributes.forEach { tmpDict[$0] = $1 }
                 }
                 if let uri = namespaceURI{
-                    tmpDict["#namespaceURI"] = uri
+                    tmpDict["\(prefix)namespaceURI"] = uri
                 }
                 //add text
                 if self.text.lengthOfBytes(using: .utf8) > 0{
                     //add cdata
                     if(cdataString.lengthOfBytes(using: .utf8) > 0){
-                        tmpDict["#cdata_setion"] = cdataString
+                        tmpDict["\(prefix)cdata_setion"] = cdataString
                     }
                     if(tmpDict.count ==  0){
                         result[tagName] = text
                     }else{
                         if(text.lengthOfBytes(using: .utf8) > 0){
-                            tmpDict["#\(tagName)_text"] = text;
+                            tmpDict["\(prefix)\(tagName)_text"] = text;
                         }
                         result[tagName] = tmpDict
                     }
@@ -68,7 +73,7 @@ class CSXMLTag : NSObject{
                         }
                     }else{
                         if(cdataString.lengthOfBytes(using: .utf8) > 0){
-                            tmpDict["#cdata_setion"] = cdataString
+                            tmpDict["\(prefix)cdata_setion"] = cdataString
                         }
                         result[tagName] = tmpDict
                     }
@@ -77,13 +82,13 @@ class CSXMLTag : NSObject{
             }else{
                 attributes.forEach { result[$0] = $1 }
                 if(cdataString.count > 0){
-                    result["#cdata_setion"] = cdataString
+                    result["\(prefix)cdata_setion"] = cdataString
                 }
                 if self.text.lengthOfBytes(using: .utf8)>0{
-                    result["#\(tagName)_text"] = text;
+                    result["\(prefix)\(tagName)_text"] = text;
                 }
                 if let uri = namespaceURI{
-                    result["#namespaceURI"] = uri
+                    result["\(prefix)namespaceURI"] = uri
                 }
                 for tag in self.subTags{
                     if let subTagName = tag.tagName{
