@@ -146,7 +146,7 @@ class CSXMLTag : NSObject{
 
 @objc public class CSXML2JSON : NSObject,XMLParserDelegate{
     //
-    public var ignoreAttributes : Bool = false
+    @objc public var ignoreAttributes : Bool = false
     //Call After Finished
     private var resultHandler : ((Dictionary<String,Any>?,Error?)->Void)?
     //element stack
