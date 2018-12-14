@@ -147,6 +147,7 @@ class CSXMLTag : NSObject{
 @objc public class CSXML2JSON : NSObject,XMLParserDelegate{
     //
     @objc public var ignoreAttributes : Bool = false
+    @objc public var ignoreNamespaceURI : Bool = false
     //Call After Finished
     private var resultHandler : ((Dictionary<String,Any>?,Error?)->Void)?
     //element stack
@@ -230,7 +231,9 @@ class CSXMLTag : NSObject{
         if !ignoreAttributes {
             self.currentTag.attributes = attributeDict
         }
-        self.currentTag.namespaceURI = namespaceURI
+        if !ignoreNamespaceURI{
+            self.currentTag.namespaceURI = namespaceURI
+        }
         self.dataString = String()
     }
     
