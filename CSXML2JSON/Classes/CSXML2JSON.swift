@@ -208,7 +208,7 @@ class CSXMLTag : NSObject{
     @objc public var ignoreNamespaceURI : Bool = false
     //Call After Finished
     private var resultHandler : ((Dictionary<String,Any>?,Error?)->Void)?
-    private var jsonHandler : ((JSON?,Error?)->Void)?
+    private var jsonHandler : ((JSON,Error?)->Void)?
     //element stack
     private var elementStack : Array<String> = [];
     //root tag
@@ -256,20 +256,20 @@ class CSXMLTag : NSObject{
         }
     }
     
-    public func jsonObject(xml : String, jsonHandler : @escaping (JSON?,Error?)->Void){
+    public func jsonObject(xml : String, jsonHandler : @escaping (JSON,Error?)->Void){
         if let data = xml.data(using: String.Encoding.utf8){
             let xmlParser = XMLParser(data:data)
             jsonObject(xmlParser: xmlParser, jsonHandler: jsonHandler)
         }else{
             if let handler = self.jsonHandler{
-                handler(nil,NSError(domain: "com.csdq.error", code: XML2JSONError.XMLFormatError.rawValue,
+                handler(JSON(),NSError(domain: "com.csdq.error", code: XML2JSONError.XMLFormatError.rawValue,
                                     userInfo: ["message" : "xml is in wrong format"]));
             }
             parserEndClean()
         }
     }
     
-    public func jsonObject(xmlParser : XMLParser, jsonHandler : @escaping (JSON?,Error?)->Void){
+    public func jsonObject(xmlParser : XMLParser, jsonHandler : @escaping (JSON,Error?)->Void){
         lock.lock()
         self.jsonHandler = jsonHandler
         self.parser = xmlParser
@@ -278,7 +278,7 @@ class CSXMLTag : NSObject{
             
         }else{
             if let handler = self.jsonHandler{
-                handler(nil,NSError(domain: "com.csdq.error",
+                handler(JSON(),NSError(domain: "com.csdq.error",
                                     code: XML2JSONError.XMLFormatError.rawValue,
                                     userInfo: ["message" : parser.parserError?.localizedDescription ?? "xml is in wrong format"]));
             }
@@ -378,7 +378,7 @@ class CSXMLTag : NSObject{
                                 userInfo: ["message" : parseError.localizedDescription]));
         }
         if let handler = self.jsonHandler{
-            handler(nil,NSError(domain: "com.csdq.error",
+            handler(JSON(),NSError(domain: "com.csdq.error",
                                 code: XML2JSONError.ParseError.rawValue,
                                 userInfo: ["message" : parseError.localizedDescription]));
         }
@@ -393,7 +393,7 @@ class CSXMLTag : NSObject{
             handler(nil,error);
         }
         if let handler = self.jsonHandler{
-            handler(nil,error);
+            handler(JSON(),error);
         }
         parserEndClean()
     }

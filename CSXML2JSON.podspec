@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  XML to JSON
+  Parse XML to JSON
                        DESC
 
   s.homepage         = 'https://github.com/csdq/CSXML2JSON'

@@ -61,9 +61,7 @@ class ViewController: UIViewController {
             </book>
             </cs:books>
             """, jsonHandler: { (json, error) in
-                if let jsonDict = json {
-                    print(jsonDict.dictionary ?? "no value")
-                }
+                print(json.dictionary ?? "no value")
         })
         
         tool.jsonObject(xml:
@@ -76,7 +74,7 @@ class ViewController: UIViewController {
             <id>33889</id>
             </Group>
             """,jsonHandler: { (json, error) in
-                print(json!.dictionary ?? "")
+                print(json.dictionary ?? "")
         })
     }
     
