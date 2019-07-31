@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CSXML2JSON'
-  s.version          = '1.0.5'
+  s.version          = '1.1.0'
   s.summary          = 'XML to JSON'
 
 # This description is used to generate tags and improve search results.
@@ -19,7 +19,6 @@ Pod::Spec.new do |s|
 
   s.description      = <<-DESC
   XML to JSON
-...em... not useful at all
                        DESC
 
   s.homepage         = 'https://github.com/csdq/CSXML2JSON'
@@ -39,5 +38,5 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'SwiftyJSON', '~> 4.0'
 end

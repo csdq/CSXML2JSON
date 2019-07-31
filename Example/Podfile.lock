@@ -1,16 +1,23 @@
 PODS:
-  - CSXML2JSON (0.1.0)
+  - CSXML2JSON (1.1.0):
+    - SwiftyJSON (~> 4.0)
+  - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - CSXML2JSON (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   CSXML2JSON:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CSXML2JSON: fec351f74211991a1db6c25fe94553636f046c63
+  CSXML2JSON: 1a78774442ce3fc687adafd161fdfcdcecf682f9
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
 PODFILE CHECKSUM: 9b21640deac8da5a0a61e63b51fa21d38c6dbcc8
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.1
